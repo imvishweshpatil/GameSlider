@@ -1,113 +1,175 @@
+"use client";
+import { useState, useEffect } from 'react';
 import Image from "next/image";
+import "./globals.css";
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+const images = [
+    {
+        src:"/rdr2.jpg",
+        alt: "Read Dead Redemption",
+        title: "Red Dead Redemption",
+        buttonLabel: "Buy Now",
+        buttonLink: "Read More",
+        logoImages: [
+            { src: "/xbox.png", alt: "Xbox", width: 100, height: 100},
+            { src: "/ps5.png", alt: "ps5", width: 100, height: 100},
+            { src: "/windows11.png", alt: "windows11", width: 100, height: 100},
+        ],
+        fontColor: "black",
+        readColor: "white",
+    },
+    {
+        src:"/cod.jpg",
+        alt: "Call of Duty",
+        title: "Call of Duty",
+        buttonLabel: "Buy Now",
+        buttonLink: "Read More",
+        logoImages: [
+            { src: "/xbox.png", alt: "Xbox", width: 100, height: 100},
+            { src: "/ps5.png", alt: "ps5", width: 100, height: 100},
+            { src: "/windows11.png", alt: "windows11", width: 100, height: 100},
+        ],
+        fontColor: "black",
+        readColor: "black",
+    },
+    {
+        src:"/pubg.jpg",
+        alt: "Playerunknowns",
+        title: "Playerunknowns",
+        buttonLabel: "Buy Now",
+        buttonLink: "Read More",
+        logoImages: [
+            { src: "/xbox.png", alt: "Xbox", width: 100, height: 100},
+            { src: "/ps5.png", alt: "ps5", width: 100, height: 100},
+            { src: "/windows11.png", alt: "windows11", width: 100, height: 100},
+        ],
+        fontColor: "black",
+        readColor: "white",
+    },
+    {
+        src: '/fh5.jpg',
+        alt: 'Forza Horizon5',
+        title: 'Forza Horizon5 ',
+        buttonLabel: 'BUY NOW',
+        buttonLink: 'Read More',
+        logoImages: [
+            { src: '/xbox.png', alt: 'Xbox', width: 100, height: 100 },
+            { src: '/ps5.png', alt: 'PS5', width: 100, height: 100 },
+            { src: '/windows11.png', alt: 'Windows 11', width: 150, height: 100 }
+        ],
+        fontColor: 'black',
+        readColor: 'white',
+    },
+];
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const GameSlider = () => {
+    const descriptionText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum felis ante, et ultrices ipsum fringilla id. Ut neque nunc congue ac enim consectetur, convallis malesuada felis. Maecenas sit amet ligula quis sapien consectetur auctor vel eu dui.ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum felis ante, et ultrices ipsum fringilla id. Ut neque ";
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    const [showFullDescription, setShowFullDescription] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [key, setKey] = useState(0);
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+    const toggleDescription = () => {
+        setShowFullDescription(!showFullDescription);
+    };
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+    useEffect(() => {
+        setImageLoaded(false);
+        setKey((prevKey) => prevKey + 1);
+    }, [currentSlide]);
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
-}
+    const handlePrevSlide = () => {
+        setCurrentSlide((prevSlide) => (prevSlide === 0 ? prevSlide : prevSlide - 1));
+    };
+
+    const handleNextSlide = () => {
+        setCurrentSlide((prevSlide) => (prevSlide === images.length - 1 ? prevSlide : prevSlide + 1));
+    };
+
+    const handleImageLoad = () => {
+        setImageLoaded(true);
+    }
+
+    const { src, title, buttonLabel, fontColor, readColor } = images[currentSlide];
+
+    const nextSlideIndex = (currentSlide) % images.length;
+    const nextSlideIndex1 = (currentSlide + 1) % images.length;
+    const { src: nextSrc} = images[nextSlideIndex];
+    const { src: nextSrc1} = images[nextSlideIndex1];
+
+    return (
+        <main>
+            <div className="container">
+                <div className={"slider"}>
+                    <Image
+                        src={src}
+                        alt={"rdr2"}
+                        layout="fill"
+                        objectFit="cover"
+                        className="responsive-image"
+                    />
+                    <h1 className="title relative"
+                        style={{ marginTop:"65px", paddingLeft: '30px', fontSize: "30px", color: fontColor, fontWeight: 'bold' }}
+                    >
+                        {title}
+                    </h1>
+                    <p className={`description relative w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 ${showFullDescription ? 'overflow-visible' : 'overflow-hidden'}`}
+                       style={{marginTop:"20px", paddingLeft: '30px', width: "40%", color: fontColor }}
+                    >
+                        {showFullDescription ? descriptionText : `${descriptionText.split(' ').slice(0, 30).join(' ')}...`}
+                    </p>
+                    <div className="buttons flex relative"
+                         style={{marginTop:"20px"}}
+                    >
+                        <button className="buynow relative bg-black text-white ml-8 rounded"
+                                style={{top:"20%", width:"90px", height:"32px"}}
+                        >
+                            {buttonLabel}
+                        </button>
+                        <button className="readmore relative read-more text-black"
+                                style={{ marginTop: '2px', marginLeft: '20px', color: readColor }}
+                                onClick={toggleDescription}
+                        >
+                            <u>{showFullDescription ? 'Read Less' : 'Read More'}</u>
+                        </button>
+                    </div>
+                    <div className="image-preview flex justify-end gap-12 mr-14 mt-12">
+                        <div className="image-preview1"
+                             style={{ width: '12%', height: '200px', position: 'relative', boxShadow: "10px 10px 20px 1px black" }}
+                        >
+                            <Image src={nextSrc} alt={`Next Slide ${nextSlideIndex}`} layout="fill" objectFit="cover" style={{ borderRadius: "15px" }} />
+                        </div>
+                        <div className="image-preview2 mt-12"
+                             style={{ width: '8%', height: '150px', position: 'relative' }}
+                        >
+                            <Image src={nextSrc1} alt={`Next Slide ${nextSlideIndex1}`} layout="fill" objectFit="cover" style={{ borderRadius: "15px" }} />
+                        </div>
+                    </div>
+                    <button
+                        id="prev-slide"
+                        onClick={handlePrevSlide}
+                        className={`absolute bottom-0 mb-4 mr-4 right-1/2 transform outline-none border-none cursor-pointer h-12 w-12 z-5 text-white flex items-center justify-center bg-black rounded-full ${
+                            currentSlide === 0 ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        disabled={currentSlide === 0}
+                    >
+                        <Image src="/left.png" alt="Previous" width={50} height={50} />
+                    </button>
+                    <button
+                        id="next-slide"
+                        onClick={handleNextSlide}
+                        className={`absolute bottom-0 mb-4 ml-4 left-1/2 transform outline-none border-none cursor-pointer h-12 w-12 z-5 text-white flex items-center justify-center bg-black rounded-full ${
+                            currentSlide === images.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        disabled={currentSlide === images.length - 1}
+                    >
+                        <Image src="/right.png" alt="Next" width={50} height={50} />
+                    </button>
+                </div>
+            </div>
+        </main>
+    );
+};
+
+export default GameSlider;
