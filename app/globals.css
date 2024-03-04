@@ -89,6 +89,19 @@
     .details{
         margin-top: 50px !important;
     }
+
+    .footer {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    .logo {
+        display: none !important;
+    }
+
+    .about {
+        margin : 0 0 !important;
+    }
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -140,6 +153,21 @@
 
     .photo {
         width: 95% !important;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: -40px !important;
+    }
+
+    .logo {
+        display: none !important;
+    }
+
+    .about {
+        font-size: 25px !important;
     }
 }
 
